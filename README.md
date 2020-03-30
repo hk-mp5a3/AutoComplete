@@ -33,6 +33,7 @@ Your MySQL table should be like:
  | starting_words | varchar(3000) | YES  |     | NULL    |       |
  | following_word | varchar(3000) | YES  |     | NULL    |       |
  | word_count     | int(11)       | YES  |     | NULL    |       |
+
 You need to configurate database realted fields in `/demo/config.py` and `model/ModelDriver.java`.
 
 
