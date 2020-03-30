@@ -56,9 +56,9 @@ public class ModelDriver {
         conf2.set("topK", args[4]);
         DBConfiguration.configureDB(conf2,
             "com.mysql.jdbc.Driver",
-            "jdbc:mysql://localhost:3306/ngram",
-            "yzhu01",
-            "password");
+            "jdbc:mysql://[host]:[port]/[database name]",
+            "[username]]",
+            "[password]");
 
         Job languageModelJob = Job.getInstance(conf2, "Language Model");
         languageModelJob.setJarByClass(ModelDriver.class);
