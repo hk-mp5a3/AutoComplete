@@ -27,7 +27,10 @@ president trump immigration, president trump said `. If the user input `presiden
 
 ### Run Code and Deploy
 #### Database Configurations
-Your MySQL table should be like:
+Requirements:
+- [MySQL](https://dev.mysql.com/downloads/installer/)
+
+Your table should be like:
  | Field          | Type          | Null | Key | Default | Extra |
  | --          | --         |--  | --  | -- | --  |
  | starting_words | varchar(3000) | YES  |     | NULL    |       |
@@ -56,10 +59,15 @@ $ python3 demo/run.py
 ```
 
 #### Hadoop Mapreduce
+Requirements:
+- [Apache Hadoop](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+- [Java](https://cwiki.apache.org/confluence/display/HADOOP2/HadoopJavaVersions)
+- [MySQL Java Connector](https://dev.mysql.com/downloads/connector/j/5.1.html)
+
 ```
-hadoop com.sun.tools.javac.Main [PATH_TO_MODEL_FOLDER]/*.java
-jar cf model.jar *.class    
-hadoop jar [PATH_TO_MODEL_FOLDER]/model.jar ModelDriver [PATH_TO_INPUT_FOLDER] [PATH_TO_OUTPUT_FOLDER] [N] [threshold] [topK]
+$ hadoop com.sun.tools.javac.Main [PATH_TO_MODEL_FOLDER]/*.java
+$ jar cf model.jar *.class    
+$ hadoop jar [PATH_TO_MODEL_FOLDER]/model.jar ModelDriver [PATH_TO_INPUT_FOLDER] [PATH_TO_OUTPUT_FOLDER] [N] [threshold] [topK]
 ```
 
 
