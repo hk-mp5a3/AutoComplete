@@ -1,0 +1,17 @@
+/*
+This is not my code. The code is originally from:
+https://jqueryui.com/resources/demos/style.css
+Thank you for the contributor!
+*/
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}

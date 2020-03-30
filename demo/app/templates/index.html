@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Auto Search Complete Demo</title>
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <!-- jquery and auto complete-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.12.4.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+    </head>
+
+    <body background="https://images.unsplash.com/photo-1483354483454-4cd359948304?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=160">
+        <!-- Text area and display -->
+        <div class="container-fluid">
+             <div class="row">
+                <div class="col-3 "></div>
+                <div class="col-6"> -
+                    <h1 class="center" style="margin-top: 25%">Search Auto Complete Demo</h1>
+                    <p class="center" style="margin-top: 2%">Input some phrase below and see what are the search suggestions for you.</p>
+                    <!-- Search form -->
+                    <input class="form-control" onkeyup="auto_complete()" id="searchbar" type="text" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+        <script>
+            /*Auto Complete Function
+            
+            Send request to backend to fetch search suggestions and 
+            display to frontend.
+
+            args: None
+            return: None
+            */ 
+            function auto_complete() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response_text = JSON.parse(this.responseText);
+                    $("#searchbar").autocomplete({
+                        source: response_text['following_word']
+                    });
+                    document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                    });
+                }
+                };
+                xhttp.open("POST", "search/autocomplete/", true);
+                var request_content = {};
+                request_content['starting_words'] = document.getElementById("searchbar").value;
+                xhttp.send(JSON.stringify(request_content));
+            }
+        </script>
+    </body>
+</html>
