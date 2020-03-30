@@ -1,6 +1,6 @@
-host = "localhost"
-user = 'yzhu01'
-passwd = 'password'
-db = 'ngram'
+host = '[host]'
+user = '[username]'
+passwd = '[password]'
+db = '[database name]'
 charset = 'utf8'
-port = 3306
+port = [port number]
