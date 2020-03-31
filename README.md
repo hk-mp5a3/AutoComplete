@@ -79,3 +79,4 @@ $ hadoop jar [PATH_TO_MODEL_FOLDER]/model.jar ModelDriver [PATH_TO_INPUT_FOLDER]
 - Homepage photo by Paul Earle on Unsplash
 - https://github.com/blackruan/auto-complete
 - https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
+- Stopword list: https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
